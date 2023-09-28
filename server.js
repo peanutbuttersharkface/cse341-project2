@@ -19,7 +19,7 @@ app.use('/', require('./routes'));
 
 
 
- mongodb.initDb((err) => {
+mongodb.initDb((err) => {
    if(err) {
        console.log(err);
    }
