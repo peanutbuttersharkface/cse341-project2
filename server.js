@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes'));
 
 
-try{
+
  mongodb.initDb((err) => {
    if(err) {
        console.log(err);
@@ -29,7 +29,5 @@ try{
         }); 
    }
   });
-} catch(error){
-    console.log(error);
-    process.exit(1);
-}
+
+
