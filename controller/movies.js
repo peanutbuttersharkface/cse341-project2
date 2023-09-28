@@ -26,7 +26,7 @@ const createMovie = async(req, res) => {
     const movie = {
         Name: req.body.Name,
         YearReleased: req.body.YearReleased,
-        DateRecived: req.body.DateRecived,
+        DateReceived: req.body.DateReceived,
         Category: req.body.Category,
         Actor: req.body.Actor,
         Actress: req.body.Actress,
@@ -47,7 +47,7 @@ const updateMovie = async(req, res) => {
     const movie = {
         Name: req.body.Name,
         YearReleased: req.body.YearReleased,
-        DateRecived: req.body.DateRecived,
+        DateReceived: req.body.DateReceived,
         Category: req.body.Category,
         Actor: req.body.Actor,
         Actress: req.body.Actress,
@@ -65,7 +65,7 @@ const updateMovie = async(req, res) => {
 const deleteMovie = async(req, res)=> {
      //#swagger.tags=['Library']
     const movieId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('Movie').deleteOne({_id:movieId});
+    const response = await mongodb.getDatabase().db().collection('Movies').deleteOne({_id:movieId});
     if(response.deleteCount > 0){
         res.status(204).send();
     }else {
