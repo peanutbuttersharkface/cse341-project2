@@ -6,6 +6,6 @@ router.get('/', (req, res) => {
     //#swagger.tags=['Hello World']
     res.send('Hello World!');});
 
-router.use('/library', require('./books'));
-
+router.use('/books', require('./books'));
+router.use('/movies', require('./movies'));
 module.exports = router;
