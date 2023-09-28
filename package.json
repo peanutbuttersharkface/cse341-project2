@@ -28,5 +28,9 @@
   "devDependencies": {   
     "swagger-autogen": "^2.23.6"
 
+  },
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": ">=16.0.0 <18.0.0"
   }
 }
