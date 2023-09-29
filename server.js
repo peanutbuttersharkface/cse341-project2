@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('./data/database');
@@ -17,15 +18,18 @@ process.on('uncaughtException', (err, origin) => {
     console.log(process.stderr.fd, `Caught exception: ${err}\n`, `Exception origin: ${origin}`);
 });
      
-try {
-    mongodb.initDb((err) =>{
-        if (err){
-            throw err;
-        }
-    });
-} catch (err) {
-    console.log(err);
-    process.exit(1);
-}
+
+mongodb.initDb((err) => {
+    if(err) {
+ console.log(err);
+    } else {
+      app.listen(port);
+      console.log(`Database is listening and node Running on port ${port}`); 
+    }
+ });
+
+   
+      
+
 
 
