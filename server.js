@@ -17,13 +17,15 @@ process.on('uncaughtException', (err, origin) => {
     console.log(process.stderr.fd, `Caught exception: ${err}\n`, `Exception origin: ${origin}`);
 });
      
-mongodb.initDb((err) => {
-   if(err) {
-console.log(err);
-   } else {
-     app.listen(port);
-     console.log(`Database is listening and node Running on port ${port}`); 
-   }
-});
+try {
+    mongodb.initDb((err) =>{
+        if (err){
+            throw err;
+        }
+    });
+} catch (err) {
+    console.log(err);
+    process.exit(1);
+}
 
 
