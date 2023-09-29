@@ -13,6 +13,9 @@ const getAllBooks = async (req, res) => {
 };
 
 const getSingleBook = async (req, res) =>{
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to find a contact.');
+      }
     //#swagger.tags=['Books']
     const bookId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('Books').find({_id:bookId});
@@ -44,6 +47,9 @@ const createBook = async(req, res) => {
 
 const updateBook = async(req, res) => {
     //#swagger.tags=['Books']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to update a contact.');
+    }
     const bookId = new ObjectId(req.params.id);
     const book = {
         Title: req.body.Title,
@@ -56,7 +62,7 @@ const updateBook = async(req, res) => {
         Category: req.body.Category
     };
 // collection is the name of the collection that you have the json file in Mongodb
-    const response = await mongodb.getDatabase().db().collection('Books').replaceOne({_id:bookId},book);
+    const response = await mongodb.getDatabase().db().collection('Books').replaceOne({ _id:bookId }, book);
     if (response.modifiedCount > 0){
         res.status(204).send();
     } else{
@@ -66,6 +72,9 @@ const updateBook = async(req, res) => {
 
 const deleteBook = async(req, res)=> {
      //#swagger.tags=['Books']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to delete a contact.');
+    }
     const bookId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('Books').deleteOne({_id:bookId});
     if(response.deleteCount > 0){

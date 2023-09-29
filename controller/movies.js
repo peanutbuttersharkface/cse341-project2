@@ -13,6 +13,9 @@ const getAllMovies = async (req, res) => {
 
 const getSingleMovie = async (req, res) =>{
     //#swagger.tags=['Movies']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to find a contact.');
+    }
     const movieId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('Movies').find({_id:movieId});
     result.toArray().then((Movies) => {
@@ -43,6 +46,9 @@ const createMovie = async(req, res) => {
 
 const updateMovie = async(req, res) => {
     //#swagger.tags=['Movies']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to update a contact.');
+    }
     const movieId = new ObjectId(req.params.id);
     const movie = {
         Name: req.body.Name,
@@ -64,6 +70,9 @@ const updateMovie = async(req, res) => {
 
 const deleteMovie = async(req, res)=> {
      //#swagger.tags=['Movies']
+    if (!ObjectId.isValid(req.params.id)) {
+        res.status(400).json('Must use a valid contact id to delete a contact.');
+    } 
     const movieId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('Movies').deleteOne({_id:movieId});
     if(response.deleteCount > 0){
