@@ -23,6 +23,9 @@
     },
     "/books/": {
       "get": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -91,6 +94,9 @@
     },
     "/books/{id}": {
       "get": {
+        "tags": [
+          "Books"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -201,6 +207,9 @@
     },
     "/movies/": {
       "get": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -266,6 +275,9 @@
     },
     "/movies/{id}": {
       "get": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "produces": [
           "application/json"
@@ -288,6 +300,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "parameters": [
           {
@@ -340,6 +355,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Movies"
+        ],
         "description": "",
         "parameters": [
           {
