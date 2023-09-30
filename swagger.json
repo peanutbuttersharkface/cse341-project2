@@ -35,10 +35,10 @@
         }
       }
     },
-    "/library/": {
+    "/books/": {
       "get": {
         "tags": [
-          "Library"
+          "books"
         ],
         "description": "",
         "produces": [
