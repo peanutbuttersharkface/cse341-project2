@@ -10,9 +10,9 @@ router.get('/', bookController.getAllBooks);
 router.get('/:id', bookController.getSingleBook);
 
 //patch or post can be used to update
-router.post('/', validation.saveBooks, bookController.createBook);
+router.post('/', validation.saveBook, bookController.createBook);
 
-router.put('/:id', validation.saveBooks, bookController.updateBook);
+router.put('/:id', validation.saveBook, bookController.updateBook);
 
 router.delete('/:id', bookController.deleteBook);
 
