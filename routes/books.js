@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const bookController =  require('../controller/books');
-const validation = require('../middleware/validate');
+//const validation = require('../middleware/validate');
 
 router.get('/', bookController.getAllBooks);
 
