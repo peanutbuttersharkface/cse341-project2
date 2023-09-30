@@ -3,6 +3,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAllMovies = (req, res) => {
+     //#swagger.tags=['Movies']
    mongodb
    .getDatabase()
    .db()
@@ -18,6 +19,7 @@ const getAllMovies = (req, res) => {
 };
 
 const getSingleMovie = (req, res) => {
+     //#swagger.tags=['Movies']
     const movieId = new ObjectId(req.params.id);
 
     mongodb
@@ -55,7 +57,7 @@ const createMovie = async(req, res) => {
 };
 
 const updateMovie = async(req, res) => {
-  
+   //#swagger.tags=['Movies']
     const movieId = new ObjectId(req.params.id);
     const movie = {
         Name: req.body.Name,
@@ -76,7 +78,7 @@ const updateMovie = async(req, res) => {
 };  
 
 const deleteMovie = async(req, res)=> {
-    
+     //#swagger.tags=['Movies']
     const movieId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('Movies').deleteOne({_id:movieId});
     if(response.deleteCount > 0){

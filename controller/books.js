@@ -4,6 +4,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 const getAllBooks = (req, res) => {
+     //#swagger.tags=['Books']
     mongodb
     .getDatabase()
     .db()
@@ -19,6 +20,7 @@ const getAllBooks = (req, res) => {
  };
 
  const getSingleBook = (req, res) => {
+     //#swagger.tags=['Books']
     const bookId = new ObjectId(req.params.id);
 
     mongodb

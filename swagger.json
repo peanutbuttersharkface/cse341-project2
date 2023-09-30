@@ -5,31 +5,24 @@
     "description": "Users Api",
     "version": "1.0.0"
   },
-  
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "https"
   ],
-  "host": "localhost:3000",
   "paths": {
-    "/": {
+    "/api-docs": {
       "get": {
-        "tags": [
-          "Hello World"
-        ],
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         }
       }
     },
     "/books/": {
       "get": {
-        "tags": [
-          "books"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -37,6 +30,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       },
@@ -61,7 +57,7 @@
                 "DatePublished": {
                   "example": "any"
                 },
-                "DateRecived": {
+                "DateReceived": {
                   "example": "any"
                 },
                 "Cost": {
@@ -84,6 +80,9 @@
           "204": {
             "description": "No Content"
           },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -92,9 +91,6 @@
     },
     "/books/{id}": {
       "get": {
-        "tags": [
-          "Books"
-        ],
         "description": "",
         "produces": [
           "application/json"
@@ -110,12 +106,15 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       },
       "put": {
         "tags": [
-          "Library"
+          "Books"
         ],
         "description": "",
         "parameters": [
@@ -140,7 +139,7 @@
                 "DatePublished": {
                   "example": "any"
                 },
-                "DateRecived": {
+                "DateReceived": {
                   "example": "any"
                 },
                 "Cost": {
@@ -163,6 +162,12 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "description": "Bad Request"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -172,6 +177,169 @@
         "tags": [
           "Books"
         ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/movies/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "example": "any"
+                },
+                "YearReleased": {
+                  "example": "any"
+                },
+                "DateReceived": {
+                  "example": "any"
+                },
+                "Category": {
+                  "example": "any"
+                },
+                "Actor": {
+                  "example": "any"
+                },
+                "Actress": {
+                  "example": "any"
+                },
+                "NumberOfCopies": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "example": "any"
+                },
+                "YearReleased": {
+                  "example": "any"
+                },
+                "DateReceived": {
+                  "example": "any"
+                },
+                "Category": {
+                  "example": "any"
+                },
+                "Actor": {
+                  "example": "any"
+                },
+                "Actress": {
+                  "example": "any"
+                },
+                "NumberOfCopies": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
         "description": "",
         "parameters": [
           {
