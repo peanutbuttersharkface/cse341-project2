@@ -15,7 +15,7 @@ const getAllBooks = async (req, res) => {
 const getSingleBook = async (req, res) =>{
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid contact id to find a contact.');
-      }
+      }else{
     //#swagger.tags=['Books']
     const bookId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('Books').find({_id:bookId});
@@ -23,7 +23,7 @@ const getSingleBook = async (req, res) =>{
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(Books[0]);
     });
-};
+}};
 
 const createBook = async(req, res) => {
      //#swagger.tags=['Books']
@@ -49,7 +49,7 @@ const updateBook = async(req, res) => {
     //#swagger.tags=['Books']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid contact id to update a contact.');
-    }
+    }else{
     const bookId = new ObjectId(req.params.id);
     const book = {
         Title: req.body.Title,
@@ -68,13 +68,13 @@ const updateBook = async(req, res) => {
     } else{
         res.status(500).json(response.error || 'Some error occurred while updating the book.');
     }
-};  
+}};  
 
 const deleteBook = async(req, res)=> {
      //#swagger.tags=['Books']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid contact id to delete a contact.');
-    }
+    }else{
     const bookId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('Books').deleteOne({_id:bookId});
     if(response.deleteCount > 0){
@@ -82,7 +82,7 @@ const deleteBook = async(req, res)=> {
     }else {
         res.status(500).json(response.error || 'Some error ocurred while deleting the book.');
     }
-};
+}};
 
 
 module.exports = {
