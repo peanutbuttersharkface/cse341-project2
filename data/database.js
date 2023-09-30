@@ -9,12 +9,7 @@ const initDb = (callback) =>{
         console.log('Db is already initialized');
         return callback(null, database);
     }
-    let MONGODB_URL;
-    if(MONGODB_URL === undefined || MONGODB_URL === null){
-        console.log('The variable is not initialized');
-    }else{
-        console.log('The variaable is initialized');
-    }
+  
     MongoClient.connect(process.env.MONGODB_URL)
     .then((client) =>{
        database = client;
