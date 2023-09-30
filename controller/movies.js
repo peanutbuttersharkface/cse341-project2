@@ -2,27 +2,37 @@ const mongodb = require('../data/database');
 
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllMovies = async (req, res) => {
-    //#swagger.tags=['Movies']
-    const result = await mongodb.getDatabase().db().collection('Movies').find();
-    result.toArray().then((Movies) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Movies);
-    });
+const getAllMovies = (req, res) => {
+   mongodb
+   .getDatabase()
+   .db()
+   .collection('Movies')
+   .find()
+   .toArray((err, lists) =>{
+    if(err){
+        res.status(400).json({message:err});
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(lists);
+   });
 };
 
-const getSingleMovie = async (req, res) =>{
-    //#swagger.tags=['Movies']
-    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to find a contact.');
-    }else{
+const getSingleMovie = (req, res) => {
     const movieId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('Movies').find({_id:movieId});
-    result.toArray().then((Movies) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Movies[0]);
-    });
-}};
+
+    mongodb
+   .getDatabase()
+   .db()
+   .collection('Movies')
+   .find({_id: movieId})
+   .toArray((err, result) =>{
+    if(err){
+        res.status(400).json({message:err});
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(result[0]);
+   });
+};
 
 const createMovie = async(req, res) => {
      //#swagger.tags=['Movies']
@@ -45,10 +55,7 @@ const createMovie = async(req, res) => {
 };
 
 const updateMovie = async(req, res) => {
-    //#swagger.tags=['Movies']
-    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to update a contact.');
-    }else{
+  
     const movieId = new ObjectId(req.params.id);
     const movie = {
         Name: req.body.Name,
@@ -66,13 +73,10 @@ const updateMovie = async(req, res) => {
     } else{
         res.status(500).json(response.error || 'Some error occurred while updating the movie.');
     }
-}};  
+};  
 
 const deleteMovie = async(req, res)=> {
-     //#swagger.tags=['Movies']
-    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to delete a contact.');
-    }else{ 
+    
     const movieId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('Movies').deleteOne({_id:movieId});
     if(response.deleteCount > 0){
@@ -80,7 +84,7 @@ const deleteMovie = async(req, res)=> {
     }else {
         res.status(500).json(response.error || 'Some error ocurred while deleting the movie.');
     }
-}};
+};
 
 module.exports = {
     getAllMovies,
