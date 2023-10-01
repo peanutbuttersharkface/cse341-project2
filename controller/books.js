@@ -21,7 +21,7 @@ const getAllBooks = (req, res) => {
      //#swagger.tags=['Books']
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json('Must use a valid book id to find a book.');
-    }
+    }else{
     const bookId = new ObjectId(req.params.id);
     mongodb
       .getDatabase()
@@ -35,7 +35,7 @@ const getAllBooks = (req, res) => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200).json(result[0]);
       });
-  };
+  }};
 
 
 
@@ -87,9 +87,9 @@ const updateBook = async(req, res) => {
     } else {
     res.status(500).json(response.error || 'Some error occurred while updating the books.');
     }
-  };  
+  }};  
 
-const deleteBook = async(req, res)=> {
+const deleteBook = async (req, res)=> {
      //#swagger.tags=['Books']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid book id to delete a book.');
@@ -98,10 +98,10 @@ const deleteBook = async(req, res)=> {
     const response = await mongodb.getDatabase().db().collection('Books').deleteOne({_id:bookId});
     if(response.deleteCount > 0){
         res.status(204).send();
-    }else {
+    } else {
         res.status(500).json(response.error || 'Some error ocurred while deleting the book.');
     }
-}}};
+}};
 
 
 module.exports = {

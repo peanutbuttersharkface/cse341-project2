@@ -17,7 +17,7 @@ const getAllMovies = (req, res) => {
         res.status(200).json(lists);
       });
   };
-  const getSingleBook = (req, res) => {
+  const getSingleMovie = (req, res) => {
      //#swagger.tags=['Movies']
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json('Must use a valid book id to find a movie.');
@@ -59,7 +59,7 @@ const createMovie = async(req, res) => {
     }
 };
 
-const updateMovies = async(req, res) => {
+const updateMovie = async(req, res) => {
     //#swagger.tags=['Movies']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid movie id to update a movie.');
@@ -87,10 +87,10 @@ const updateMovies = async(req, res) => {
     } else {
     res.status(500).json(response.error || 'Some error occurred while updating the movie.');
     }
-  };  
+  }};  
 
 const deleteMovie = async(req, res)=> {
-     //#swagger.tags=['Movie']
+     //#swagger.tags=['Movies']
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid movie id to delete a movie.');
     }else{
@@ -101,7 +101,7 @@ const deleteMovie = async(req, res)=> {
     }else {
         res.status(500).json(response.error || 'Some error ocurred while deleting the movie.');
     }
-}}};
+}};
 
 
 module.exports = {
