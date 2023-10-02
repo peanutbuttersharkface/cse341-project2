@@ -1,3 +1,4 @@
+const { response } = require('express');
 const mongodb = require('../data/database');
 
 const ObjectId = require('mongodb').ObjectId;
@@ -11,7 +12,11 @@ const getAllBooks = async(req, res) => {
     .find();
     result.toArray().then((Books) => {
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Books);
+        if(response.acknowledged){
+          res.status(200).json(Books);
+        }else{
+          res.status(500).json(response.error || 'Some error occurred while retreiving all books')
+        }
     });
 };
   const getSingleBook = async (req, res) => {
