@@ -13,9 +13,9 @@ const getAllBooks = async(req, res) => {
     result.toArray().then((Books) => {
         res.setHeader('Content-Type', 'application/json');
         if(response.acknowledged){
-          res.status(200).json(Books);
+          res.status(200).json(response);
         }else{
-          res.status(500).json(response.error || 'Some error occurred while retreiving all books')
+          res.status(400).json(response.error || 'Some error occurred while retreiving all books')
         }
     });
 };
