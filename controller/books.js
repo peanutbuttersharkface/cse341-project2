@@ -3,17 +3,20 @@ const mongodb = require('../data/database');
 
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllBooks = async(req, res) => {
+const getAllBooks = (req, res) => {
     //#swagger.tags=['Books']
   
-    const result = await mongodb
+  mongodb
     .getDatabase()
     .db()
     .collection('Books')
-    .find();
-    result.toArray().then((Books) => {
-        res.setHeader('Content-Type', 'application/json')
-        res.status(200).json(Books)
+    .find()
+    .toArray((err, lists) => {
+        if(err){
+            res.status(400).json({message:err});
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(lists);
     });
   
 };
