@@ -13,7 +13,7 @@ try{
     .find()
     .toArray();
   res.setHeader('Content-Type', 'application/json');
-  res.status(204).json(result);
+  res.status(200).json(result);
 } catch(err) {
     res.status(500).json({message: 'List of books was not able to be retrieved.'})
 }
@@ -28,7 +28,7 @@ try{
     const result = await mongodb.getDatabase().db().collection('Books').find({_id:bookId});
     result.toArray().then((Books) => {
         res.setHeader('Content-Type', 'application/json');
-        res.status(204).json(Books[0]);
+        res.status(200).json(Books[0]);
     });
   }};
 
