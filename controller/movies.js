@@ -4,12 +4,19 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAllMovies = async(req, res) => {
     //#swagger.tags=['Movies']
-    const result = await mongodb.getDatabase().db().collection('Movies').find();
-    result.toArray().then((Movies) => {
+    try{
+        const result = await mongodb
+          .getDatabase()
+          .db()
+          .collection('Movies')
+          .find()
+          .toArray();
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Movies);
-      });
-  };
+        res.status(200).json(result);
+      } catch(err) {
+          res.status(500).json({message: 'List of movies was not able to be retrieved.'})
+      }
+      };
   const getSingleMovie = async(req, res) => {
      //#swagger.tags=['Movies']
     if (!ObjectId.isValid(req.params.id)) {

@@ -1,25 +1,24 @@
-const { response } = require('express');
+//const { response } = require('express');
 const mongodb = require('../data/database');
 
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllBooks = (req, res) => {
+const getAllBooks = async(req, res) => {
     //#swagger.tags=['Books']
-  
-  mongodb
+try{
+  const result = await mongodb
     .getDatabase()
     .db()
     .collection('Books')
     .find()
-    .toArray((err, lists) => {
-        if(err){
-            res.status(400).json({message:err});
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-    });
-  
+    .toArray();
+  res.setHeader('Content-Type', 'application/json');
+  res.status(204).json(result);
+} catch(err) {
+    res.status(500).json({message: 'List of books was not able to be retrieved.'})
+}
 };
+
   const getSingleBook = async (req, res) => {
      //#swagger.tags=['Books']
     if (!ObjectId.isValid(req.params.id)) {
@@ -29,7 +28,7 @@ const getAllBooks = (req, res) => {
     const result = await mongodb.getDatabase().db().collection('Books').find({_id:bookId});
     result.toArray().then((Books) => {
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(Books[0]);
+        res.status(204).json(Books[0]);
     });
   }};
 
@@ -49,7 +48,7 @@ const createBook = async(req, res) => {
     };
     const response = await mongodb.getDatabase().db().collection('Books').insertOne(book);
     if (response.acknowledged){
-        res.status(201).json(response);
+        res.status(204).json(response);
     } else{
         res.status(500).json(response.error || 'Some error occurred while updating the book.');
     }
