@@ -81,7 +81,7 @@ DELETE http://localhost:3000/movies/6515c647cbe20a4c9c56a3aa
 
 PRODUCTION
 ### Get all books
-GET https://project1-c38m.onrender.com/contacts
+GET https://project2-c30u.onrender.com/books
 
 ### Get book by id
 Get https://project1-c38m.onrender.com/contacts/6503718208939f0281daed06

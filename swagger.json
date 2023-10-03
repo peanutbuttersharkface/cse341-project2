@@ -8,7 +8,7 @@
   "host": "project2-p30u.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http", "https"
+     "https"
   ],
   "paths": {
     "/": {
