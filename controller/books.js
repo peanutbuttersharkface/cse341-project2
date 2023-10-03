@@ -11,7 +11,7 @@ try{
     .db()
     .collection('Books')
     .find()
-    .toArray();
+    result.toArray();
   res.setHeader('Content-Type', 'application/json');
   res.status(200).json(result);
 } catch(err) {
