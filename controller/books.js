@@ -5,9 +5,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 const getAllBooks = async(req, res) => {
     //#swagger.tags=['Books']
-    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Something went wrong obtaining list of books.');
-    }else{
+  
     const result = await mongodb
     .getDatabase()
     .db()
@@ -18,7 +16,7 @@ const getAllBooks = async(req, res) => {
         res.status(200).json(Books)
     });
   
-}};
+};
   const getSingleBook = async (req, res) => {
      //#swagger.tags=['Books']
     if (!ObjectId.isValid(req.params.id)) {
