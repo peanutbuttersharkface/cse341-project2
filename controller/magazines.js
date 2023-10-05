@@ -39,7 +39,7 @@ const getAllMags = async(req, res) => {
 
 
 
-const createBook = async(req, res) => {
+const createMag = async(req, res) => {
      //#swagger.tags=['Magazines']
     const magazine = {
         Title: req.body.Title,
