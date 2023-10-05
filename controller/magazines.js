@@ -16,7 +16,7 @@ const getAllMags = async(req, res) => {
     result.toArray().then((Magazines, err)=>{
         try{
             res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(Mags);
+            res.status(200).json(Magazines);
             } catch(err) {
             res.status(500).json({message: 'List of magazines was not able to be retrieved.'});
 }
