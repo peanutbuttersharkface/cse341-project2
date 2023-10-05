@@ -17,7 +17,7 @@ const getAllMovies = async(req, res) => {
           res.status(500).json({message: 'List of movies was not able to be retrieved.'})
       }
       };
-  const getSingleMovie = async(req, res) => {
+const getSingleMovie = async(req, res) => {
      //#swagger.tags=['Movies']
     if (!ObjectId.isValid(req.params.id)) {
       res.status(400).json('Must use a valid movie id to find a movie.');
