@@ -4,7 +4,7 @@ const router = express.Router();
 const magazineController =  require('../controller/magazines');
 const validation = require('../middleware/validate');
 
-router.get('/', magazineController.getAllMag);
+router.get('/', magazineController.getAllMags);
 
 router.get('/:id', magazineController.getSingleMag);
 
