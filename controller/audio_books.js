@@ -27,7 +27,7 @@ const getAllAudio = async(req, res) => {
   const getSingleAudio = async (req, res) => {
      //#swagger.tags=[Audio_Books']
     if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json('Must use a valid audio book id to find a book.');
+      res.status(400).json('Must use a valid audio book id to find a audio book.');
     }else{
     const audioId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('Audio_Books').find({_id:audioId});
