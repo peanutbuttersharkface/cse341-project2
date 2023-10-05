@@ -89,12 +89,12 @@ const updateAudio = async(req, res) => {
     }
   }};  
 
-const deleteBook = async (req, res)=> {
+const deleteAudio = async (req, res)=> {
      //#swagger.tags=['Audio_Books']
     if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid audio book id to delete a audio book.');
+        res.status(400).json('Must use a valid audio audio book id to delete a audio book.');
     }else{
-    const bookId = new ObjectId(req.params.id);
+    const audioId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('Audio_Books').deleteOne({_id:audioId});
     if(response.deleteCount > 0){
         res.status(204).send();
