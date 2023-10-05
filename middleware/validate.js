@@ -45,7 +45,54 @@ const saveMovie = (req, res, next) => {
       }
     });
   };
+
+const saveAudio = (req, res, next) => {
+    const validationRule3 = {
+      Title: 'required|string',
+      Author: 'required|string',
+      DatePublished: 'string',
+      DateReceived: 'string',
+      Cost: 'required|string',
+      ISBN:'required|string',
+      NumberOfCopies: 'required|string',
+      Category: 'required|string',
+    };
+    validator(req.body, validationRule3, {}, (err, status) => {
+      if (!status) {
+        res.status(412).send({
+          success: false,
+          message: 'Validation failed',
+          data: err
+        });
+      } else {
+        next();
+      }
+    });
+  };
+
+const saveMag = (req, res, next) => {
+    const validationRule4 = {
+      Title: 'required|string',
+      Week: 'string',
+      NumberOfCopies: 'required|string',
+      Category: 'required|string',
+    };
+    validator(req.body, validationRule4, {}, (err, status) => {
+      if (!status) {
+        res.status(412).send({
+          success: false,
+          message: 'Validation failed',
+          data: err
+        });
+      } else {
+        next();
+      }
+    });
+  };
+
 module.exports = {
   saveBook,
-  saveMovie
+  saveMovie,
+  saveAudio,
+  saveMag
 };
