@@ -3,15 +3,17 @@ const router = express.Router();
 
 const audioController =  require('../controller/audio_books');
 const validation = require('../middleware/validate');
+const { isAuthenticated } = require("../middleware/authenticate");
+
 
 router.get('/', audioController.getAllAudio);
 
 router.get('/:id', audioController.getSingleAudio);
 
-router.post('/', validation.saveAudio, audioController.createAudio);
+router.post('/', isAuthenticated, validation.saveAudio, audioController.createAudio);
 
-router.put('/:id', validation.saveAudio, audioController.updateAudio);
+router.put('/:id', isAuthenticated, validation.saveAudio, audioController.updateAudio);
 
-router.delete('/:id', audioController.deleteAudio);
+router.delete('/:id', isAuthenticated, audioController.deleteAudio);
 
 module.exports = router;
