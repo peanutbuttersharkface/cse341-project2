@@ -64,7 +64,7 @@ app.get('/github/callback', passport.authenticate('github', {
       res.redirect('/');
    });
 
-mongodb.initDb((err, mongoDB) =>{
+mongodb.initDb((err, mongodb) =>{
    if(err) {
       console.log(err);
    } else {
