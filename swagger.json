@@ -5,21 +5,29 @@
     "description": "Users Api",
     "version": "1.0.0"
   },
-  "host": "project2-p30u.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
-    "/": {
+    "/login": {
       "get": {
-        "tags": [
-          "Name"
-        ],
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
@@ -96,8 +104,8 @@
           "204": {
             "description": "No Content"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -184,8 +192,8 @@
           "400": {
             "description": "Bad Request"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -211,6 +219,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -277,8 +288,8 @@
           "201": {
             "description": "Created"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -362,8 +373,8 @@
           "400": {
             "description": "Bad Request"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -389,6 +400,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -458,8 +472,8 @@
           "204": {
             "description": "No Content"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -469,7 +483,7 @@
     },
     "/audio_books/{id}": {
       "get": {
-        "tags": ["Audio_Books"],
+        "tags": [],
         "description": "",
         "produces": [
           "application/json"
@@ -541,8 +555,8 @@
           "400": {
             "description": "Bad Request"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -568,6 +582,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -625,8 +642,8 @@
           "204": {
             "description": "No Content"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -701,8 +718,8 @@
           "400": {
             "description": "Bad Request"
           },
-          "412": {
-            "description": "Precondition Failed"
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -728,6 +745,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
